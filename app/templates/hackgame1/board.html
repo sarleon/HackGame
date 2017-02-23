@@ -1,0 +1,54 @@
+{% include 'hackgame1/header.html' %}
+{% include 'hackgame1/navbar.html' %}
+
+
+<!-- left bar -->
+<div class="col-md-3">
+</div>
+
+
+<!-- main bar -->
+<div class="col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">管理员</h3>
+        </div>
+        <div class="panel-body">
+            世界上最好的编程语言是什么？
+        </div>
+    </div>
+    {% for message in messages %}
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ message.name }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ message.content | safe}}
+                <br/>
+                <form method="POST" action="{{ url_for('hackgame1.delete_message') }}">
+                    <input type="hidden" name="redirect" value="{{ current_stage }}">
+                    <input type="hidden" name="id" value="{{ message.id }}">
+
+                    <button type="submit" class="btn-danger" style="float: right">删除</button>
+                </form>
+            </div>
+
+        </div>
+    {% endfor %}
+
+
+    <hr>
+    <!-- input bar-->
+    <form class="form-group" action="{{ url_for('hackgame1.add_message') }}" method="post">
+        <input type="hidden" name="redirect" value="{{ current_stage }}">
+        <textarea class="form-control" title="发表回复" name="content" required></textarea>
+
+        <button type="submit" class="btn">提交</button>
+    </form>
+</div>
+
+
+
+
+{% include 'hackgame1/footer.html' %}
