@@ -9,9 +9,11 @@
     <h4>&nbsp;&nbsp;&nbsp;&nbsp;联系作者：sarleon56@hotmail.com </h4>
     <hr/>
     <h4>第一部分：最基础的XSS</h4>
-    <b>目标：注入js以弹窗显示cookies</b>
-    <p>即：注入以下Js</p>
-    <code lang="javascript">alert(document.cookies)</code>
+    <b>目标：注入js以弹窗显示cookies,即：注入以下Js</b><p></p>
+
+    <code lang="javascript">alert(document.cookies)</code><p></p>
+    <p>注意：本部分注入的应该为持久型XSS，即刷新页面后仍然可以奏效的</p>
+    <p>XSS类的CTF在任何时候都是可以在本页面直接插入一句js执行来达到效果的，只不过这么做没有任何意义</p>
 
 
 </div>
