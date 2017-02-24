@@ -2,6 +2,8 @@
 import re
 
 def script_filter(input):
-    pass
+    return input.replace('<script>','')
+
+
 
 
