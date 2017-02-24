@@ -14,6 +14,10 @@
             console.log( 'xss');
             _old_alert.apply(window,arguments);
             $("#next-stage").show();
+            $("#main").append(" 恭喜！你居然通关了orz膜拜菊苣!!!!!"+
+            {% if next_stage %}
+                '<a href="{{ url_for('hackgame1.'+next_stage) }}" style="color:red">下一关</a>'
+            {% endif %});
 
         };
     })();
