@@ -42,7 +42,13 @@ def delete_message():
     return redirect(url_for('hackgame1.' + redirect_method))
 
 #template test
-
+@hackgame1.route('/delete_my_message',methods=['POST'])
+def delete_my_message():
+    token=session.get('token')
+    if Messages.delete_my_message(token):
+        return "success"
+    else:
+        return "failed"
 @hackgame1.route('/tt1')
 def template_test_board():
 
@@ -61,7 +67,14 @@ def stage1():
 
 @hackgame1.route('/stage2')
 def stage2():
-    return
+    current_stage = 'stage2'
+    next_stage = 'stage3'
+    messages = Messages.fetch_messages_by_token(session.get('token') or "")
+    return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
+                           next_stage=next_stage)
+
+
+
 
 
 @hackgame1.route('/stage3')

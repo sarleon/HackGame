@@ -16,6 +16,17 @@ class Messages(db.Model):
     token=db.Column(db.String(40))
 
     @staticmethod
+    def delete_my_message(token):
+        try:
+            messages=Messages.fetch_messages_by_token(token)
+            map(lambda x:{
+                db.session.delete(x)
+            },messages)
+            db.session.commit()
+            return True
+        except:
+            return False
+    @staticmethod
     def fetch_messages_by_token(token):
         return Messages.query.filter_by(token=token).all()
 

@@ -13,6 +13,7 @@
 
             console.log( 'xss');
             _old_alert.apply(window,arguments);
+            $.post('{{ url_for('hackgame1.delete_my_message') }}');
             $("#next-stage").show();
             $("#main").append(" 恭喜！你居然通关了orz膜拜菊苣!!!!!"+
             {% if next_stage %}
