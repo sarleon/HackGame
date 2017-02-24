@@ -1,6 +1,24 @@
 {% include 'hackgame1/header.html' %}
 {% include 'hackgame1/navbar.html' %}
 
+<script>
+
+    (function() {
+        var _old_alert = window.alert;
+        window.alert = function() {
+            //document.body.innerHTML += "<br>done alerting<br>";
+            // run some code when the alert pops up
+            //document.body.innerHTML += "<br>alerting";
+            // run some code after the alert
+
+            console.log( 'xss');
+            _old_alert.apply(window,arguments);
+            $("#next-stage").show();
+
+        };
+    })();
+
+</script>
 
 <!-- left bar -->
 <div class="col-md-3">
@@ -8,7 +26,7 @@
 
 
 <!-- main bar -->
-<div class="col-md-6">
+<div class="col-md-6" id="main">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">管理员</h3>
@@ -46,9 +64,17 @@
 
         <button type="submit" class="btn">提交</button>
     </form>
+    <div class="panel-danger panel " id="next-stage" style="display: none">
+        <div class="panel-heading">
+
+        </div>
+        <div class="panel-body">
+            恭喜！你居然通关了orz膜拜菊苣!!!!!
+            {% if next_stage %}
+                <a href="{{ url_for('hackgame1.'+next_stage) }}" style="color:red">下一关</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
-
-
-
 
 {% include 'hackgame1/footer.html' %}
