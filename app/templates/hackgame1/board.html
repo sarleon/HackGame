@@ -15,9 +15,9 @@
             _old_alert.apply(window,arguments);
             $.post('{{ url_for('hackgame1.delete_my_message') }}');
             $("#next-stage").show();
-            $("#main").append(" 恭喜！你居然通关了orz膜拜菊苣!!!!!"+
-            {% if next_stage %}
-                '<a href="{{ url_for('hackgame1.'+next_stage) }}" style="color:red">下一关</a>'
+            $("#main").append(" 恭喜！你居然通关了orz膜拜菊苣!!!!!"
+            {% if next_stage is not none%}
+                +'<a href="{{ url_for('hackgame1.stage',level=next_stage) }}" style="color:red">下一关</a>'
             {% endif %});
 
         };
@@ -32,6 +32,7 @@
 
 <!-- main bar -->
 <div class="col-md-6" id="main">
+    <h2>第{{ current_stage }}关</h2>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">管理员</h3>
@@ -75,8 +76,8 @@
         </div>
         <div class="panel-body">
             恭喜！你居然通关了orz膜拜菊苣!!!!!
-            {% if next_stage %}
-                <a href="{{ url_for('hackgame1.'+next_stage) }}" style="color:red">下一关</a>
+            {% if next_stage is not none %}
+                <a href="{{ url_for('hackgame1.stage',level=next_stage) }}" style="color:red">下一关</a>
             {% endif %}
         </div>
     </div>

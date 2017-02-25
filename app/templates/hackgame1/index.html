@@ -5,14 +5,15 @@
 </div>
 
 <div class="col-md-7">
-    <h3 class="header">没什么难度的CTF（Capture the flag)游戏，仅供各位玩乐</h3>
+    <h2 class="header">没什么难度的CTF（Capture the flag)游戏，仅供各位玩乐</h2>
     <h4>&nbsp;&nbsp;&nbsp;&nbsp;联系作者：sarleon56@hotmail.com </h4>
     <hr/>
-    <h4>第一部分：最基础的XSS</h4>
+    <h3>第一部分：最基础的XSS</h3>
+    <p>这是一个留言板，对它进行xss攻击！</p>
     <b>目标：注入js以弹窗显示cookies,即：注入以下Js</b><p></p>
 
     <code lang="javascript">alert(document.cookies)</code><p></p>
-    <p>注意：本部分注入的应该为持久型XSS，即刷新页面后仍然可以奏效的</p>
+    <p>注意：本部分注入的应该为持久型XSS，即刷新页面后仍然可以奏效的，另外，不要对main bar之前的内容做修改，那不是攻击目标</p>
     <p>XSS类的CTF在任何时候都是可以在本页面直接插入一句js执行来达到效果的，只不过这么做没有任何意义</p>
 
 
