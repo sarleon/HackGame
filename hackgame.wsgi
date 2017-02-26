@@ -1,0 +1,3 @@
+import sys
+sys.path.insert(0, '/home/www/hacklab/HackGame')
+from manage import app as application
