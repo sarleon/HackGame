@@ -20,5 +20,9 @@ def script_tag_recursive_filter(input_string):
     return input_string
 
 
+def on_event_sub_filter(input_string):
+    return re.sub('on\d+','onevent',input_string)
+
+
 
 

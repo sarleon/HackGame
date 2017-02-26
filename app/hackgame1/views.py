@@ -5,12 +5,12 @@ from ..models.message import Messages
 from ..utils.random_token import random_token
 from ..utils.string_filter import script_tag_recursive_filter, script_tag_filter, script_tag_nf_filter
 
-filters_map = {
-    'stage1': lambda x: x,
-    'stage2': script_tag_filter,
-    'stage3': script_tag_nf_filter,
-    'stage4': script_tag_recursive_filter
-}
+levels_map = [
+     lambda x: x,
+     script_tag_filter,
+     script_tag_nf_filter,
+     script_tag_recursive_filter
+]
 
 
 @DeprecationWarning
@@ -33,10 +33,18 @@ def index():
 
 @hackgame1.route('/add_message', methods=['POST'])
 def add_message():
+    stage = request.form.get('redirect')
     content = request.form.get('content')
+    try:
+        stage = int(stage)
+    except ValueError as e:
+        print e.message
+        return 'invalid request', 400
+
+    content=levels_map[stage+1](content)
+
     token = session.get('token')
     Messages.add_message("", content, token)
-    stage = request.form.get('redirect')
 
     return redirect(url_for('hackgame1.stage', level=stage))
 
@@ -74,7 +82,7 @@ def stage():
         return 'invalid request', 400
 
     current_stage = stage
-    if stage < len(filters_map):
+    if stage < len(levels_map):
         next_stage = current_stage + 1
     else:
         next_stage = None
@@ -84,31 +92,31 @@ def stage():
                            next_stage=next_stage)
 
 
-# 第一关
-@hackgame1.route('/stage1')
-def stage1():
-    current_stage = 'stage1'
-    next_stage = 'stage2'
-    messages = Messages.fetch_messages_by_token(session.get('token') or "")
-    return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
-                           next_stage=next_stage)
-
-
-# 第二关
-@hackgame1.route('/stage2')
-def stage2():
-    current_stage = 'stage2'
-    next_stage = 'stage3'
-    messages = Messages.fetch_messages_by_token(session.get('token') or "")
-    return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
-                           next_stage=next_stage)
-
-
-@hackgame1.route('/stage3')
-def stage3():
-    return
-
-
-@hackgame1.route('/stage4')
-def stage4():
-    return
+# # 第一关
+# @hackgame1.route('/stage1')
+# def stage1():
+#     current_stage = 'stage1'
+#     next_stage = 'stage2'
+#     messages = Messages.fetch_messages_by_token(session.get('token') or "")
+#     return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
+#                            next_stage=next_stage)
+#
+#
+# # 第二关
+# @hackgame1.route('/stage2')
+# def stage2():
+#     current_stage = 'stage2'
+#     next_stage = 'stage3'
+#     messages = Messages.fetch_messages_by_token(session.get('token') or "")
+#     return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
+#                            next_stage=next_stage)
+#
+#
+# @hackgame1.route('/stage3')
+# def stage3():
+#     return
+#
+#
+# @hackgame1.route('/stage4')
+# def stage4():
+#     return

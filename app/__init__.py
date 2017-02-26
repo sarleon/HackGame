@@ -1,4 +1,4 @@
-from flask import Flask,session,render_template
+from flask import Flask,session,render_template,redirect,url_for
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -47,6 +47,9 @@ def create_app(config_name):
     from hackgame1 import hackgame1 as hackgame1_blueprint
     # app.register_blueprint(api_blueprint, url_prefix='/api')
     # app.register_blueprint(micourse_blueprint)
+    @app.route('/')
+    def index():
+        return redirect(url_for('hackgame1.index'))
     app.register_blueprint(hackgame1_blueprint,url_prefix="/hackgame1")
     app.permanent_session_lifetime = timedelta(minutes=5)
 
