@@ -41,8 +41,10 @@ def add_message():
         print e.message
         return 'invalid request', 400
 
-    content=levels_map[stage+1](content)
-
+    try:
+        content=levels_map[stage-1](content)
+    except:
+        return 'invalid request', 400
     token = session.get('token')
     Messages.add_message("", content, token)
 
@@ -75,6 +77,10 @@ def template_test_board():
 @hackgame1.route('/stage')
 def stage():
     stage = request.args.get('level')
+
+    if stage > (len(levels_map)+1):
+        return 'invalid argument', 404
+
     try:
         stage = int(stage)
     except ValueError as e:
