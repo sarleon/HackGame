@@ -11,6 +11,9 @@ levels_map = [
      script_tag_nf_filter,
      script_tag_recursive_filter
 ]
+levels_tip_map=[
+
+]
 
 
 @DeprecationWarning
@@ -93,6 +96,7 @@ def stage():
 
 
     current_stage = stage
+    tip=levels_tip_map[stage]
     if stage < len(levels_map):
         next_stage = current_stage + 1
     else:
@@ -100,7 +104,7 @@ def stage():
 
     messages = Messages.fetch_messages_by_token(session.get('token') or "")
     return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
-                           next_stage=next_stage)
+                           next_stage=next_stage,tip=tip)
 
 
 # # 第一关
