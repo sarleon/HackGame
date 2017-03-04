@@ -36,7 +36,9 @@ def add_message():
     stage = request.form.get('redirect')
     content = request.form.get('content')
     try:
+        print stage+" submit"
         stage = int(stage)
+
     except ValueError as e:
         print e.message
         return 'invalid request', 400
@@ -77,15 +79,18 @@ def template_test_board():
 @hackgame1.route('/stage')
 def stage():
     stage = request.args.get('level')
-
-    if stage > (len(levels_map)+1):
-        return 'invalid argument', 404
-
     try:
         stage = int(stage)
     except ValueError as e:
         print e.message
         return 'invalid request', 400
+    if stage > len(levels_map)+1:
+
+        print stage
+        print len(levels_map)
+        return 'invalid argument', 404
+
+
 
     current_stage = stage
     if stage < len(levels_map):
