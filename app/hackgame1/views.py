@@ -11,6 +11,9 @@ levels_map = [
      script_tag_nf_filter,
      script_tag_recursive_filter
 ]
+levels_tip_map=[
+
+]
 
 
 @DeprecationWarning
@@ -36,7 +39,9 @@ def add_message():
     stage = request.form.get('redirect')
     content = request.form.get('content')
     try:
+        print stage+" submit"
         stage = int(stage)
+
     except ValueError as e:
         print e.message
         return 'invalid request', 400
@@ -77,17 +82,21 @@ def template_test_board():
 @hackgame1.route('/stage')
 def stage():
     stage = request.args.get('level')
-
-    if stage > (len(levels_map)+1):
-        return 'invalid argument', 404
-
     try:
         stage = int(stage)
     except ValueError as e:
         print e.message
         return 'invalid request', 400
+    if stage > len(levels_map)+1:
+
+        print stage
+        print len(levels_map)
+        return 'invalid argument', 404
+
+
 
     current_stage = stage
+    tip=levels_tip_map[stage]
     if stage < len(levels_map):
         next_stage = current_stage + 1
     else:
@@ -95,7 +104,7 @@ def stage():
 
     messages = Messages.fetch_messages_by_token(session.get('token') or "")
     return render_template('hackgame1/board.html', messages=messages, current_stage=current_stage,
-                           next_stage=next_stage)
+                           next_stage=next_stage,tip=tip)
 
 
 # # 第一关
