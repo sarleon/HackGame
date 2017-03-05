@@ -12,6 +12,10 @@ levels_map = [
      script_tag_recursive_filter
 ]
 levels_tip_map=[
+    "",
+    "",
+    "",
+    ""
 
 ]
 
@@ -96,7 +100,11 @@ def stage():
 
 
     current_stage = stage
-    tip=levels_tip_map[stage]
+    try:
+        tip=levels_tip_map[stage]
+    except IndexError as e:
+        print e.message
+
     if stage < len(levels_map):
         next_stage = current_stage + 1
     else:
