@@ -29,6 +29,15 @@
                         <li><a href="{{ url_for('hackgame1.stage',level=4) }}">第四关</a></li>
                     </ul>
                 </li>
+
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >实用工具 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('hackgame1.crypt') }}">密码</a></li>
+                        <li><a href="{{ url_for('hackgame1.encode') }}">密码</a></li>
+                        <li><a href="{{ url_for('hackgame1.hash') }}">哈希</a></li>
+                    </ul>
+                </li>
             </ul>
 
 
