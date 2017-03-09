@@ -1,0 +1,43 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<script src="{{ url_for('static',filename='js/encode.js') }}"></script>
+<script>
+
+</script>
+
+<div class="col-md-2">
+
+</div>
+<div class="col-md-10">
+    <div class="col-md-4">
+    <textarea class="form-control" rows="15"></textarea>
+    </div>
+    <div class="col-md-2">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <select  class="form-control" id="action">
+            <option value="encode">编码</option>
+            <option value="decode">解码</option>
+        </select>
+
+        <br/>
+       <select class="form-control" id="action">
+            <option value="url">url</option>
+            <option value="html">html</option>
+            <option value="base64">base64</option>
+            <option value="ascii">ascii</option>
+        </select>
+        <br/>
+        <button class="btn btn-default" onclick="">执行</button>
+    </div>
+    <div class="col-md-4">
+  <textarea class="form-control" rows="15"></textarea>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}

@@ -1,4 +1,5 @@
 from . import tools
+from flask import render_template,redirect,Response
 
 @tools.route('/')
 def index():
@@ -13,6 +14,7 @@ def wenku():
 
 @tools.route('/hash')
 def hash():
+
     return
 
 @tools.route('/crypt')
@@ -21,4 +23,4 @@ def crypt():
 
 @tools.route('/encode')
 def encode():
-    return
+    return render_template('tools/encode.html')
