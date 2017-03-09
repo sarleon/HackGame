@@ -2,7 +2,32 @@
 {% include 'navbar.html' %}
 <script src="{{ url_for('static',filename='js/encode.js') }}"></script>
 <script>
+    function calculate() {
+        var action=$("#action").val();
+        var type=$("#type").val();
+        console.log(action);
+        console.log(type);
+        var cal_func;
+        if (action == 'encode'){
+            switch (type){
+                case 'url':cal_func=url_encode;break;
+                case 'html':cal_func=html_encode;break;
+                case 'ascii':cal_func=string_to_ascii;break;
+                case 'base64':cal_func=base64_encode;break;
+            }
+        } else {
+                switch (type){
+                case 'url':cal_func=url_decode;break;
+                case 'html':cal_func=html_decode;break;
+                case 'ascii':cal_func=ascii_to_string;break;
+                case 'base64':cal_func=base64_decode;break;
+            }
+        }
 
+        var input=$("#input").val();
+        $("#output").text(cal_func(input));
+
+    }
 </script>
 
 <div class="col-md-2">
@@ -10,7 +35,7 @@
 </div>
 <div class="col-md-10">
     <div class="col-md-4">
-    <textarea class="form-control" rows="15"></textarea>
+    <textarea class="form-control" rows="15" id="input"></textarea>
     </div>
     <div class="col-md-2">
 
@@ -24,17 +49,17 @@
         </select>
 
         <br/>
-       <select class="form-control" id="action">
+       <select class="form-control" id="type">
             <option value="url">url</option>
             <option value="html">html</option>
             <option value="base64">base64</option>
             <option value="ascii">ascii</option>
         </select>
         <br/>
-        <button class="btn btn-default" onclick="">执行</button>
+        <button class="btn btn-default" onclick="calculate()">执行</button>
     </div>
     <div class="col-md-4">
-  <textarea class="form-control" rows="15"></textarea>
+  <textarea class="form-control" rows="15" id="output"></textarea>
     </div>
 </div>
 

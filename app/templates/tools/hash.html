@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<script src="{{ url_for('static',filename='js/hash.js') }}"></script>
+<script>
+    function calculate() {
+
+        var type=$("#type").val();
+
+        var cal_func;
+
+            switch (type){
+                case 'md5':cal_func=md5;break;
+                case 'sha1':cal_func=sha1;break;
+                case 'sha224':cal_func=sha224;break;
+                case 'sha256':cal_func=sha256;break;
+                case 'sha512':cal_func=sha512;break;
+        }
+
+        var input=$("#input").val();
+        $("#output").text(cal_func(input));
+
+    }
+</script>
+
+<div class="col-md-2">
+
+</div>
+<div class="col-md-10">
+    <div class="col-md-4">
+    <textarea class="form-control" rows="15" id="input"></textarea>
+    </div>
+    <div class="col-md-2">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+
+        <br/>
+       <select class="form-control" id="type">
+            <option value="md5">md5</option>
+            <option value="sha1">sha1</option>
+            <option value="sha224">sha224</option>
+            <option value="sha256">sha256</option>
+            <option value="sha512">sha512</option>
+        </select>
+        <br/>
+        <button class="btn btn-default" onclick="calculate()">执行</button>
+    </div>
+    <div class="col-md-4">
+  <textarea class="form-control" rows="15" id="output"></textarea>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}

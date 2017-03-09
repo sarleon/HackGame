@@ -18,13 +18,22 @@ function url_decode(input) {
 
 }
 function html_encode(input) {
-    return input;
+    return input
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 
 }
 
 function html_decode(input) {
-    return input;
-
+     return input
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&');
 }
 
     

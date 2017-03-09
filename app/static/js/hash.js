@@ -5,3 +5,19 @@ function md5(input) {
     
 }
 
+
+function sha1(input) {
+    
+}
+
+function sha224(input) {
+    
+}
+
+function sha256(input) {
+    
+}
+
+function sha512(input) {
+
+}
