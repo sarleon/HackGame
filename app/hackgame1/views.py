@@ -103,6 +103,7 @@ def stage():
     try:
         tip=levels_tip_map[stage]
     except IndexError as e:
+        tip = None
         print e.message
 
     if stage < len(levels_map):
