@@ -1,6 +1,7 @@
 {% include 'header.html' %}
 {% include 'navbar.html' %}
 <script src="{{ url_for('static',filename='js/encode.js') }}"></script>
+
 <script>
     function calculate() {
         var action=$("#action").val();
@@ -14,6 +15,7 @@
                 case 'html':cal_func=html_encode;break;
                 case 'ascii':cal_func=string_to_ascii;break;
                 case 'base64':cal_func=base64_encode;break;
+                case 'utf7':cal_func=
             }
         } else {
                 switch (type){
@@ -55,6 +57,7 @@
             <option value="html">html</option>
             <option value="base64">base64</option>
             <option value="ascii">ascii</option>
+           <option value="utf7">utf7</option>
         </select>
         <br/>
         <button class="btn btn-default" onclick="calculate()">执行</button>
