@@ -15,12 +15,13 @@ def wenku():
 @tools.route('/hash')
 def hash():
 
-    return
+    return render_template('tools/hash.html')
 
 @tools.route('/crypt')
 def crypt():
-    return
+     return render_template('tools/crypt.html')
 
 @tools.route('/encode')
 def encode():
     return render_template('tools/encode.html')
+

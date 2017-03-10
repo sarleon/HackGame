@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+<script src="{{ url_for('static',filename='js/crypto/aes.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/rc4.js') }}"></script>
+
+<script>
+    function calculate() {
+
+        var type=$("#type").val();
+
+        var cal_func;
+
+            switch (type){
+                case 'aes':cal_func=CryptoJS.AES;break;
+                case 'rc4':cal_func=CryptoJS.RC4;break;
+
+        }
+
+        var input=$("#input").val();
+        var key=$("#key").val();
+        $("#output").text(cal_func(input,key));
+
+    }
+</script>
+
+<div class="col-md-2">
+
+</div>
+<div class="col-md-10">
+    <h1>加密</h1>
+    <div class="col-md-4">
+    <textarea class="form-control" rows="15" id="input"></textarea>
+    </div>
+    <div class="col-md-2">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <label for="key">密钥</label><input type="text" id="key" class="form-control">
+        <br/>
+       <select class="form-control" id="type">
+            <option value="aes">aes</option>
+            <option value="rc4">rc4</option>
+        </select>
+
+        <br/>
+        <button class="btn btn-default" onclick="calculate()">执行</button>
+    </div>
+    <div class="col-md-4">
+  <textarea class="form-control" rows="15" id="output"></textarea>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}

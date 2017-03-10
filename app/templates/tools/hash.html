@@ -1,6 +1,13 @@
 {% include 'header.html' %}
 {% include 'navbar.html' %}
-<script src="{{ url_for('static',filename='js/hash.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/md5.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/sha1.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/sha3.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/sha224.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/sha256.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/sha384.js') }}"></script>
+<script src="{{ url_for('static',filename='js/crypto/sha512.js') }}"></script>
+<script src="{{ url_for('static',filename='js/CRC32.js') }}"></script>
 <script>
     function calculate() {
 
@@ -9,11 +16,14 @@
         var cal_func;
 
             switch (type){
-                case 'md5':cal_func=md5;break;
-                case 'sha1':cal_func=sha1;break;
-                case 'sha224':cal_func=sha224;break;
-                case 'sha256':cal_func=sha256;break;
-                case 'sha512':cal_func=sha512;break;
+                case 'md5':cal_func=CryptoJS.MD5;break;
+                case 'sha1':cal_func=CryptoJS.SHA1;break;
+                case 'sha3':cal_func=CryptoJS.SHA3;break;
+                case 'sha224':cal_func=CryptoJS.SHA224;break;
+                case 'sha256':cal_func=CryptoJS.SHA256;break;
+                case 'sha384':cal_func=CryptoJS.SHA384;break;
+                case 'sha512':cal_func=CryptoJS.SHA512;break;
+                case 'CRC32':cal_func=CRC32.str;break;
         }
 
         var input=$("#input").val();
@@ -42,9 +52,12 @@
        <select class="form-control" id="type">
             <option value="md5">md5</option>
             <option value="sha1">sha1</option>
+            <option value="sha3">sha3</option>
             <option value="sha224">sha224</option>
             <option value="sha256">sha256</option>
+            <option value="sha384">sha384</option>
             <option value="sha512">sha512</option>
+            <option value="CRC32">CRC32</option>
         </select>
         <br/>
         <button class="btn btn-default" onclick="calculate()">执行</button>
