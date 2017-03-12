@@ -46,6 +46,7 @@ def create_app(config_name):
     # from api import api as api_blueprint
     from hackgame1 import hackgame1 as hackgame1_blueprint
     from tools import  tools as tools_blueprint
+    from fileupload import fileupload as fileupload_blueprint
     # app.register_blueprint(api_blueprint, url_prefix='/api')
     # app.register_blueprint(micourse_blueprint)
     @app.route('/')
@@ -53,6 +54,7 @@ def create_app(config_name):
         return redirect(url_for('hackgame1.index'))
     app.register_blueprint(hackgame1_blueprint,url_prefix="/hackgame1")
     app.register_blueprint(tools_blueprint,url_prefix='/tools')
+    app.register_blueprint(fileupload_blueprint,url_prefix='/fileupload')
     app.permanent_session_lifetime = timedelta(minutes=5)
 
     return app
