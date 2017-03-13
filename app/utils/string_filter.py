@@ -29,3 +29,4 @@ def javascript_schema_filter(input_string):
     return re.sub('javascript:','javascript',input_string)
 
 
+
