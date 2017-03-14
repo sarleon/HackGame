@@ -19,14 +19,15 @@ def script_tag_recursive_filter(input_string):
         input_string=re.sub('<script>', '',input_string,flags=re.L)
     return input_string
 
-
+#过滤on事件
 def on_event_sub_filter(input_string):
     return re.sub('on\d+','onevent',input_string)
 
 
-
+#过滤js schmea
 def javascript_schema_filter(input_string):
     return re.sub('javascript:','javascript',input_string)
+
 
 
 
