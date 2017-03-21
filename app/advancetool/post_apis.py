@@ -18,11 +18,11 @@ def get_decode_function(input_string):
     if all_true(in_charset,input_string,b64charset):
         if all_true(in_charset,input_string,b32charset):
             if all_true(in_charset,input_string,b16charset):
-                return b64decode
+                return b16decode
             else:
                 return b32decode
         else:
-            return b16decode
+            return b64decode
     else:
         raise InvalidCharsetError
 
@@ -37,9 +37,20 @@ def all_true(function,iterable,*args):
             flag=False
     return flag
 
+def try_decode(input_string):
+    can_decode=True
+    while can_decode:
+        decode_function=get_decode_function(input_string)
+        input_string=decode_function(input_string)
+        can_decode=is_printable_string(input_string)
+    return input_string
 
 @advancetools.route('/auto_decode_base64_api',methods=['POST'])
 def auto_decode_base64_api():
     input_string=request.form.get('input')
+    return try_decode(input_string)
+
+
+
 
 

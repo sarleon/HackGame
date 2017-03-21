@@ -1,0 +1,40 @@
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+
+<script>
+    var input=$("#input").val();
+    var data={
+        'input':input
+    };
+    ajax.post('{{ url_for("advancetool.auto_decode_base64_api")}}',data, function (data,status) {
+        $("#output").html(data);
+    });
+</script>
+<div class="col-md-2">
+
+</div>
+<div class="col-md-10">
+    <h1>解码baseXX</h1>
+    <div class="col-md-4">
+    <textarea class="form-control" rows="15" id="input"></textarea>
+    </div>
+    <div class="col-md-2">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+
+        <br/>
+
+        <button class="btn btn-default" onclick="calculate()">执行</button>
+    </div>
+    <div class="col-md-4">
+  <textarea class="form-control" rows="15" id="output"></textarea>
+    </div>
+</div>
+
+
+
+{% include 'footer.html' %}
